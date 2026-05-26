@@ -3,64 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta property="og:title" content="メニューツール">
-  <meta property="og:description" content="メニューツール">
+  <meta property="og:title" content="メニュー管理">
+  <meta property="og:description" content="メニュー管理">
   <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/tai.png">
-  <title>メニューツール</title>
+  <title>メニュー管理</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="./tai.png">
 </head>
 <body>
-  <!-- タイトル -->
-  <h1>✨メニュー決めツール✨</h1>
+  <h1>🍽️ メニュー管理</h1>
+  <p>レシピの管理とメニュー決めができます</p>
 
-  <!-- ごはん・お菓子 -->
-  <div class="section">
-    <h2>① ごはん・お菓子？</h2>
-    <div class="menu-buttons">
-      <button type="button" class="menu-btn" onclick="selectMenu('1', this)">🍚 ごはん</button>
-      <button type="button" class="menu-btn" onclick="selectMenu('0', this)">🍰 お菓子</button>
-    </div>
-    <input type="hidden" id="menuFlag" value="">
+  <div class="buttons">
+    <a href="list.html" class="btn btn-list">📋 レシピ一覧</a>
+    <a href="menu.html" class="btn btn-menu">✨ メニューを決める</a>
   </div>
-
-  <!-- 手間 -->
-  <div class="section">
-    <h2>② 手間？（複数選択可）</h2>
-    <div class="sub-buttons">
-      <button type="button" class="sub-btn" onclick="selectAllTema()">全て選択</button>
-      <button type="button" class="sub-btn" onclick="clearAllTema()">全て解除</button>
-    </div>
-    <label><input type="checkbox" class="tema" value="簡単"> 簡単</label>
-    <label><input type="checkbox" class="tema" value="まぁ簡単"> まぁ簡単</label>
-    <label><input type="checkbox" class="tema" value="ちょっと面倒"> ちょっと面倒</label>
-    <label><input type="checkbox" class="tema" value="面倒"> 面倒</label>
-    <label><input type="checkbox" class="tema" value="わからない"> わからない</label>
-  </div>
-
-  <!-- 定番の選択 -->
-  <div class="section">
-    <h2>③ 定番？</h2>
-    <label><input type="radio" name="teiban" value="1"> YES</label>
-    <label><input type="radio" name="teiban" value="all" checked> 指定なし</label>
-  </div>
-
-  <!-- ジャンルの選択 -->
-  <div class="section">
-    <h2>④ ジャンル？</h2>
-    <select id="ingredientSelect">
-      <option value="all">指定なし</option>
-    </select>
-  </div>
-
-  <!-- 決定ボタン -->
-  <button class="decision-button" onclick="submit()">決定！</button>
-
-  <!-- 結果欄 -->
-  <div id="result"></div>
-
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
