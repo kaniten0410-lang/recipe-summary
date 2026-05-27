@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta property="og:title" content="レシピ一覧">
+  <meta property="og:description" content="レシピ一覧">
+  <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/tai.png">
+  <title>レシピ一覧</title>
+  <link rel="stylesheet" href="list_style.css">
+  <link rel="icon" href="./tai.png">
+</head>
+<body>
+
+  <h1>📋 レシピ一覧</h1>
+
+  <div class="searchs">
+    <input type="text" id="search" placeholder="検索...">
+    <button id="filterGenre" class="search-button" onclick="searchClick('search')">🔍</button>
+  </div>
+
+  <div id="result"></div>
+
+  <table>
+    <tbody id="recipeList">
+      <!--リスト表示-->
+    </tbody>
+  </table>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="script.js"></script>
+  <script src="list_script.js"></script>
+</body>
+</html>
