@@ -19,6 +19,7 @@ h1 {
     font-size: 24px;
     margin-bottom: 8px;
     text-align: center;
+    padding: 5px;
 }
 
 p {
@@ -56,6 +57,44 @@ p {
     color: white;
 }
 
+.btn-management {
+    background: #567aba;
+    color: white;
+}
+
 .btn:hover {
     opacity: 0.85;
+}
+
+.name{
+  display: flex;
+  margin:  0 auto;
+  text-align: center;
+  padding: 20px;
+}
+
+@keyframes egg-slide {
+  0%   { background-position: 200% 50%; }
+  100% { background-position: -250% 50%; }
+}
+
+.image-insert {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .name {
+    display: block;
+    width: 100%;
+    padding: 18px 20px 40px;
+  }
+  .image-insert{
+    background-image:url(../tamago.png);
+    display: block;
+    background-size: contain; 
+    width: 100%;
+    height: 50px;
+    animation: egg-slide 15s linear infinite;
+    will-change: background-position;
+  }
 }
