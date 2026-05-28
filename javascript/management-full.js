@@ -1,3 +1,8 @@
+// 起動時
+getData().then(data => {
+  loadtable(data, 0);
+});
+
 // データ取得し、テーブル表示させる
 function loadtable(allData) {
   // recipeListIDを取得する

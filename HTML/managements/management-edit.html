@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta property="og:title" content="データ編集">
+  <meta property="og:description" content="データ編集">
+  <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/tai.png">
+  <title>データ編集</title>
+  <link rel="stylesheet" href="../../CSS/management_style.css">
+  <link rel="icon" href="../../tai.png">
+</head>
+<body>
+  <h1>📒 データ編集</h1>
+
+  <form id="addform">
+    <ul>
+      <li class="section_url">
+        <h2>編集または削除したいURL</h2>
+        <select id="title_Select">
+          <option name="url" value="all">指定なし</option>
+        </select>
+      </li>
+      <li class="section">
+        <h2>料理名</h2>
+        <input type="text" name="name" id="name" required>
+      </li>
+      <li class="section">
+        <h2>料理フラグ</h2>
+        <div class="menu-buttons">
+          <button type="button" class="menu-btn" onclick="selectMenu('isGohan', 'cook_true', this)" id="cook_true">true</button>
+          <button type="button" class="menu-btn" onclick="selectMenu('isGohan', 'cook_false', this)" id="cook_false" >False</button>
+        </div>
+        <input type="hidden" name="isGohan" id="isGohan" value="cook_false">
+      </li>
+      <li class="section">
+        <h2>お菓子フラグ</h2>
+        <div class="menu-buttons">
+          <button type="button" class="menu-btn" onclick="selectMenu('isOkashi', 'sweet_true', this)" id="sweet_true" >true</button>
+          <button type="button" class="menu-btn" onclick="selectMenu('isOkashi', 'sweet_false', this)" id="sweet_false" >False</button>
+        </div>
+        <input type="hidden" name="isOkashi" id="isOkashi" value="sweet_false">
+      </li>
+      <li class="section">
+        <h2>手間</h2>
+				<select name="tema" id="tema">
+					<option value="簡単" selected>簡単</option>
+					<option value="まぁ簡単">まぁ簡単</option>
+					<option value="ちょっと面倒">ちょっと面倒</option>
+					<option value="面倒">面倒</option>
+					<option value="わからない">わからない</option>
+				</select>
+      </li>
+      <li class="section">
+        <h2>定番フラグ</h2>
+        <div class="menu-buttons">
+          <button type="button" class="menu-btn" onclick="selectMenu('isTeiban', 'teiban_true', this)" id="teiban_true" >true</button>
+          <button type="button" class="menu-btn" onclick="selectMenu('isTeiban', 'teiban_false', this)" id="teiban_false" >False</button>
+        </div>
+        <input type="hidden" name="isTeiban" id="isTeiban" value="teiban_false">
+      </li>
+      <li class="section">
+        <h2>ジャンル</h2>
+        <input type="text" name="genre" id="genre" required>
+      </li>
+      <li class="section">
+        <h2>メモ</h2>
+        <input type="text" name="memo" id="memo">
+      </li>
+    </ul>
+      <div class="menu-buttons">
+        <button type="button" class="decision-button" onclick="selectMenu('isTeiban', 'teiban_true', this)" id="teiban_true" >更新!</button>
+        <button type="button" class="derete-button" onclick="derete()" id="teiban_false" >削除‼</button>
+      </div>
+  </form>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../../javascript/script.js"></script>
+  <script src="../../javascript/management-edit.js"></script>
+</body>
+</html>

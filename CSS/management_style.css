@@ -159,6 +159,16 @@ ul, li {
   margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
+.section_url {
+  width: 100%;
+  max-width: 480px;
+  background: rgb(255, 213, 213);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
 .menu-buttons {
   display: flex;
   gap: 10px;
@@ -193,4 +203,19 @@ ul, li {
 }
 .decision-button:hover { 
   background: #f2873a; 
+}
+.derete-button {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+  background: #fb3e3e;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 0 16px 0;
+}
+.derete-button:hover { 
+  background: #e13737; 
 }

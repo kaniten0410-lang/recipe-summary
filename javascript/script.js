@@ -13,15 +13,13 @@ firebase.initializeApp(firebaseConfig);
 // Firestoreを使えるようにする
 const db = firebase.firestore();
 // 全データを格納する変数
-let allData = [];
-// 起動時にFirestoreからデータを全件取得する
-db.collection('recipes').get().then(snapshot => {
-  snapshot.forEach(doc => {
-    allData.push(doc.data());
-  });
-  // リスト表示用
-  loadtable(allData, 0);
-});
+let allData = null;
+async function getData() {
+  if (allData) return allData; // キャッシュがあればそれを返す
+  const snapshot = await db.collection('recipes').get();
+  allData = snapshot.docs.map(doc => doc.data());
+  return allData;
+}
 
 // OGP画像取得
 function get_ogp(url, imgElement, fallbackUrl = null) {
