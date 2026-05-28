@@ -26,7 +26,7 @@ db.collection('recipes').get().then(snapshot => {
 // OGP画像取得
 function get_ogp(url, imgElement, fallbackUrl = null) {
   if (url && url !== 'URL無し') {
-    const gasUrl = 'https://script.google.com/macros/s/AKfycbxuGSmGXzIautUkZcBcR5Tv0IX1InwgBcWUVOnaP2TMmGuKBcNK1o7ihec0tj7bNgJiYA/exec';
+    const gasUrl = 'https://script.google.com/macros/s/AKfycbxVmNg5RYgo7yKEcmJ9Q8SbYiONknuXKufVfM-Q67reNvjlZmyL6Wc0On8bLhCZyaQTNg/exec';
     fetch(`${gasUrl}?url=${encodeURIComponent(url)}`)
       .then(res => res.json())
       .then(ogp => {

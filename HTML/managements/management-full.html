@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta property="og:title" content="全データ閲覧">
+  <meta property="og:description" content="全データ閲覧">
+  <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/tai.png">
+  <title>全データ閲覧</title>
+  <link rel="stylesheet" href="../../CSS/management_style.css">
+  <link rel="icon" href="../../tai.png">
+</head>
+<body id="top">
+  <h1>👀 全データ閲覧</h1>
+
+  <div class="responsive-table">
+    <table>
+      <colgroup>
+        <col style="width: 150px"> 
+        <col style="width: 90px">  
+        <col span="3"> 
+        <col style="width: 90px">
+        <col>
+        <col style="width: 80px">
+        <col style="width: 80px">                      
+      </colgroup>
+      <tbody>
+        <tr>
+          <th>タイトル</th>
+          <th>料理名</th>
+          <th>料理</th>
+          <th>お菓子</th>
+          <th>URL</th>
+          <th>手間</th>
+          <th>定番</th>
+          <th>ジャンル</th>
+          <th>メモ</th>
+        </tr>
+      </tbody>
+      <tbody id="recipeList">
+        <!--リスト表示-->
+      </tbody>
+    </table>
+  </div>
+
+  <a href="#top" class="to-top">▲ トップへ</a>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="../../javascript/script.js"></script>
+  <script src="../../javascript/management-full.js"></script>
+</body>
+</html>
