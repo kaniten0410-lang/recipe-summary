@@ -3,6 +3,9 @@ getData().then(data => {
   loadtable(data, 0);
 });
 
+// resultIDを取得する
+const resultDiv = document.getElementById('result-list');
+
 // データ取得し、テーブル表示させる
 function loadtable(allData, option = 0) {
   // recipeListIDを取得する
@@ -10,7 +13,6 @@ function loadtable(allData, option = 0) {
 
   // option==1(検索機能)の場合は一旦すべての要素を削除
   if (option == 1){
-    const resultDiv = document.getElementById('result');
     resultDiv.style.display = 'none';
     
     while (recipe_tbl.firstChild) {
@@ -64,8 +66,6 @@ function loadtable(allData, option = 0) {
 
 // 結果表示
 function showResult(result) {
-  // resultIDを取得する
-  const resultDiv = document.getElementById('result');
 
   // エラーだった場合の処理
   if (result.error) {

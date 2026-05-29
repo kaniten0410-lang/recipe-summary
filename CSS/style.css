@@ -1,75 +1,123 @@
+/* ===========================
+   共通
+=========================== */
+:root {
+  --color-teal:   #62c9cc;
+  --color-teal-dark: #53aeb0;
+  --color-orange: #f79148;
+  --color-orange-dark: #f2873a;
+  --color-blue:   #567aba;
+  --color-bg:     #fff8f2;
+  --color-red: #fd6b6b;
+  --color-gray:#555;
+  --color-litegray:#ccc;
+}
+
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #fff8f2;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
+  font-family: Arial, sans-serif;
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
 }
 
 h1 {
-    font-size: 24px;
-    margin: 15px;
-    text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-p {
-    font-size: 14px;
-    margin:5px auto 40px;
-    text-align: center;
+h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--color-gray);
 }
 
+/* 結果欄 */
+.result {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 12px;
+  text-align: center;
+  display: none;
+}
+.result-menu {
+  padding: 20px;
+  font-size: 17px;
+  line-height: 1.8;
+}
+.result-list {
+  padding-bottom: 20px;
+  font-size: 15px;
+  color: var(--color-red);
+  font-weight: bold;
+}
+
+/* ===========================
+   index
+=========================== */
+.h1-index {
+  font-size: 24px;
+  margin: 15px;
+  text-align: center;
+}
+
+/* ボタン */
 .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-    max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .btn {
-    padding: 20px;
-    border: none;
-    border-radius: 12px;
-    font-size: 18px;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  color: white;
 }
 
 .btn-list {
-    background: #62c9cc;
-    color: white;
+  background: var(--color-teal);
 }
 
 .btn-menu {
-    background: #f79148;
-    color: white;
+  background: var(--color-orange);
 }
 
 .btn-management {
-    background: #567aba;
-    color: white;
+  background: var(--color-blue);
 }
 
 .btn:hover {
-    opacity: 0.85;
+  opacity: 0.85;
 }
 
-.name{
+/* 画像 */
+.image-control{
   display: flex;
   margin:  0 auto;
   text-align: center;
   padding: 20px;
+}
+
+.image-insert {
+  display: none;
 }
 
 @keyframes egg-slide {
@@ -77,22 +125,188 @@ p {
   100% { background-position: -250% 50%; }
 }
 
-.image-insert {
+/* スマホ用 */
+@media (max-width: 600px) {
+  .image-control {
+  display: block;
+  width: 100%;
+  padding: 18px 20px 40px;
+  }
+  .image-insert{
+  display: block;
+  background-size: contain; 
+  width: 100%;
+  height: 50px;
+  animation: egg-slide 15s linear infinite;
+  will-change: background-position;
+  }
+}
+
+/* ===========================
+   menu
+=========================== */
+.result-menu.visible {
+  display: block;
+  background-color: #fffcc9;
+}
+.result-menu a {
+  color: #333;
+  word-break: break-all;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+input[type=checkbox], input[type=radio] {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+select {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid var(--color-litegray);
+  border-radius: 8px;
+}
+
+/* 項目ごとの設定 */
+.section {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ごはん・お菓子ボタン */
+.menu-buttons {
+  display: flex;
+  gap: 10px;
+}
+.teal-btn {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0;
+  color: white;
+  background: var(--color-teal);
+}
+.menu-btn {
+  padding: 14px;
+  font-size: 16px;
+}
+
+.menu-btn.active {
+  background: var(--color-blue);
+  color: white;
+}
+/* サブボタン */
+.sub-btn {
+  padding: 10px;  
+  font-size: 14px;
+}
+.sub-btn:hover { 
+  background: var(--color-teal-dark); 
+}
+
+/* 全選択・解除ボタン */
+.sub-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+/* 決定ボタン */
+.decision-button {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+  background: var(--color-orange);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 0 16px 0;
+}
+.decision-button:hover { 
+  background: var(--color-orange-dark); 
+  }
+
+/* OGP画像欄 */
+#ogpImage {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 12px;
   display: none;
 }
 
-@media (max-width: 600px) {
-  .name {
-    display: block;
-    width: 100%;
-    padding: 18px 20px 40px;
-  }
-  .image-insert{
-    display: block;
-    background-size: contain; 
-    width: 100%;
-    height: 50px;
-    animation: egg-slide 15s linear infinite;
-    will-change: background-position;
-  }
+/* ===========================
+   list
+=========================== */
+/* 表示用テーブル */
+table{
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.list-table {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1em;
+}
+.list-table th,
+.list-table td {
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+.list-table a {
+  color: var(--color-gray);
+  text-decoration: none;
+}
+
+/* 検索欄 */
+.list-input {
+  width: 100%;
+  font-size: 16px;
+  padding: 15px;
+  border: 1px solid var(--color-litegray);
+  color: var(--color-gray);
+  border-radius: 8px;
+}
+.search-button {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 0;
+  background: var(--color-teal);
+}
+.searchs {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+/* OGP画像表示 */
+.ogp-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.ogp-fallback {
+  object-fit: contain;
 }

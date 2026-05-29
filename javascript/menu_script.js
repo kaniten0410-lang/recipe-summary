@@ -111,7 +111,7 @@ function submit() {
 // 結果を表示する処理
 function showResult(result) {
   // resultIDを取得する
-  const resultDiv = document.getElementById('result');
+  const resultDiv = document.getElementById('result-menu');
 
   // エラーだった場合の処理
   if (result.error) {

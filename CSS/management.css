@@ -1,0 +1,126 @@
+/* ===========================
+   データ管理画面
+=========================== */
+.btn-full {
+  background: #7ba2a9;
+}
+.btn-add {
+  background: #4e8d98;
+}
+.btn-edit {
+  background: #0e8ca2;
+}
+
+/* ===========================
+   全件表示
+=========================== */
+.full-table {
+  width: 800px;
+  table-layout: fixed;
+  margin: 0 auto;
+}
+.full-table th,
+.full-table td {
+  border: 1px solid #9d9d9d;
+  text-align: center;
+  font-size: 13px;
+}
+.full-table th {
+  position: sticky;
+  white-space: nowrap;
+  vertical-align: middle;
+  height: 50px;
+  background-color: #fce5cd;
+  top: 29.9px;
+  z-index: 100;
+}
+.full-table td {
+  height: 40px;
+}
+.full-table a {
+  color: black;
+}
+.full-table td:nth-child(1) {
+  text-align: left;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.responsive-table {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  height: calc(100vh - 80px);
+  max-width: 830px; 
+  margin: 0 auto; 
+}
+.responsive-table table {
+  min-width: 600px;
+}
+.number {
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 150;
+  padding: 4px 0;
+  margin-bottom: 5px;
+  text-align: left;
+  height: 30px;
+}
+/* ===========================
+   データ追加・編集
+=========================== */
+form {
+  width: 100%;
+  max-width: 480px;
+}
+form input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid var(--color-litegray);
+  border-radius: 8px;
+}
+form input:focus { 
+  border: 1px solid #0040b7;
+  outline: none;
+}
+
+ul, li {
+  list-style: none;
+  width: 100%;
+}
+
+.section_url {
+  background: rgb(255, 213, 213);
+  margin-bottom: 20px;
+}
+.delete-button {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+  background: #fb3e3e;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 0 16px 0;
+}
+.delete-button:hover { 
+  background: #e13737; 
+}
+
+.manage-search-button {
+  padding: 5px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 0;
+  background: var(--color-teal);
+}
+.manage-searchs {
+  display: flex;
+  gap: 10px;
+  margin: 15px auto;
+}

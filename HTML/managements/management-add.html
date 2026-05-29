@@ -7,7 +7,8 @@
   <meta property="og:description" content="データ追加">
   <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/tai.png">
   <title>データ追加</title>
-  <link rel="stylesheet" href="../../CSS/management_style.css">
+  <link rel="stylesheet" href="../../CSS/style.css">
+  <link rel="stylesheet" href="../../CSS/management.css">
   <link rel="icon" href="../../image/tai.png">
 </head>
 <body>
@@ -22,16 +23,16 @@
       <li class="section">
         <h2>料理フラグ</h2>
         <div class="menu-buttons">
-          <button type="button" class="menu-btn" onclick="selectMenu('isGohan', 'cook_true', this)" id="cook_true">true</button>
-          <button type="button" class="menu-btn" onclick="selectMenu('isGohan', 'cook_false', this)" id="cook_false" >False</button>
+          <button type="button" class="teal-btn menu-btn" onclick="selectMenu('isGohan', 'cook_true', this)" id="cook_true">true</button>
+          <button type="button" class="teal-btn menu-btn" onclick="selectMenu('isGohan', 'cook_false', this)" id="cook_false" >False</button>
         </div>
         <input type="hidden" name="isGohan" id="isGohan" value="cook_false">
       </li>
       <li class="section">
         <h2>お菓子フラグ</h2>
         <div class="menu-buttons">
-          <button type="button" class="menu-btn" onclick="selectMenu('isOkashi', 'sweet_true', this)" id="sweet_true" >true</button>
-          <button type="button" class="menu-btn" onclick="selectMenu('isOkashi', 'sweet_false', this)" id="sweet_false" >False</button>
+          <button type="button" class="teal-btn menu-btn" onclick="selectMenu('isOkashi', 'sweet_true', this)" id="sweet_true" >true</button>
+          <button type="button" class="teal-btn menu-btn" onclick="selectMenu('isOkashi', 'sweet_false', this)" id="sweet_false" >False</button>
         </div>
         <input type="hidden" name="isOkashi" id="isOkashi" value="sweet_false">
       </li>
@@ -52,8 +53,8 @@
       <li class="section">
         <h2>定番フラグ</h2>
         <div class="menu-buttons">
-          <button type="button" class="menu-btn" onclick="selectMenu('isTeiban', 'teiban_true', this)" id="teiban_true" >true</button>
-          <button type="button" class="menu-btn" onclick="selectMenu('isTeiban', 'teiban_false', this)" id="teiban_false" >False</button>
+          <button type="button" class="teal-btn menu-btn" onclick="selectMenu('isTeiban', 'teiban_true', this)" id="teiban_true" >true</button>
+          <button type="button" class="teal-btn menu-btn" onclick="selectMenu('isTeiban', 'teiban_false', this)" id="teiban_false" >False</button>
         </div>
         <input type="hidden" name="isTeiban" id="isTeiban" value="teiban_false">
       </li>

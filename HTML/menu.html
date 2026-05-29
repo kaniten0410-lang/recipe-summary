@@ -7,7 +7,7 @@
   <meta property="og:description" content="メニュー決め">
   <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/tai.png">
   <title>メニューツール</title>
-  <link rel="stylesheet" href="../CSS/menu_style.css">
+  <link rel="stylesheet" href="../CSS/style.css">
   <link rel="icon" href="../image/tai.png">
 </head>
 <body>
@@ -18,8 +18,8 @@
   <div class="section">
     <h2>① ごはん・お菓子？</h2>
     <div class="menu-buttons">
-      <button type="button" class="menu-btn" onclick="selectMenu('1', this)">🍚 ごはん</button>
-      <button type="button" class="menu-btn" onclick="selectMenu('0', this)">🍰 お菓子</button>
+      <button type="button" class="teal-btn menu-btn" onclick="selectMenu('1', this)">🍚 ごはん</button>
+      <button type="button" class="teal-btn menu-btn" onclick="selectMenu('0', this)">🍰 お菓子</button>
     </div>
     <input type="hidden" id="menuFlag" value="">
   </div>
@@ -28,8 +28,8 @@
   <div class="section">
     <h2>② 手間？（複数選択可）</h2>
     <div class="sub-buttons">
-      <button type="button" class="sub-btn" onclick="selectAllTema()">全て選択</button>
-      <button type="button" class="sub-btn" onclick="clearAllTema()">全て解除</button>
+      <button type="button" class="teal-btn sub-btn" onclick="selectAllTema()">全て選択</button>
+      <button type="button" class="teal-btn sub-btn" onclick="clearAllTema()">全て解除</button>
     </div>
     <label><input type="checkbox" class="tema" value="簡単"> 簡単</label>
     <label><input type="checkbox" class="tema" value="まぁ簡単"> まぁ簡単</label>
@@ -57,7 +57,7 @@
   <button class="decision-button" onclick="submit()">決定！</button>
 
   <!-- 結果欄 -->
-  <div id="result"></div>
+  <div id="result-menu" class="result result-menu"></div>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
