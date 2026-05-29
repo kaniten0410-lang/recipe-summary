@@ -24,4 +24,9 @@ function loadtable(allData) {
       `;
       recipe_tbl.appendChild(tr);
     });
+  
+  const number = document.getElementById("number");
+  const num = allData.length;
+  number.innerText = `全${num}件`;
+
   };

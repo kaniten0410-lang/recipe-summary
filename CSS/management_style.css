@@ -17,6 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 16px;
+  width: 100%; 
 }
 
 h1 {
@@ -36,7 +37,6 @@ h2 {
 table {
   width: 800px;
   border-collapse: collapse;
-  margin: 10px auto;
   background: white;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   table-layout: fixed;
@@ -47,12 +47,18 @@ th, td {
   font-size: 13px;
 }
 th {
+  position: sticky;
   white-space: nowrap;
   vertical-align: middle;
   height: 50px;
   background-color: #fce5cd;
+  top: 0;
+  z-index: 100;
 }
 td {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   height: 40px;
 }
 td a {
@@ -68,12 +74,15 @@ table td:nth-child(1) {
   overflow-x: auto;
   overflow-y: auto;
   width: 100%;
+  max-height: calc(100vh - 60px);
 }
 .responsive-table table {
   min-width: 600px;
 }
 /* --------------------------------------------------------- */
-
+.number {
+  margin-right: auto;
+}
 /* ボタン---------------------------------------------------- */
 .buttons {
   display: flex;
@@ -107,19 +116,7 @@ table td:nth-child(1) {
 }
 /* --------------------------------------------------------- */
 
-/* トップへ-------------------------------------------------- */
-.to-top {
-  display: block;
-  text-align: center;
-  margin: 10px auto;
-  color: #ff9078;
-  text-decoration: none;
-  font-weight: bold;
-}
-.to-top:active {
-  opacity: 0.7;
-}
-/* --------------------------------------------------------- */
+
 
 
 form{
@@ -218,4 +215,19 @@ ul, li {
 }
 .derete-button:hover { 
   background: #e13737; 
+}
+
+.manage-search-button {
+  padding: 5px 15px;
+  border: 2px #62c9cc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 0;
+  background: #62c9cc;
+}
+.manage-searchs {
+  display: flex;
+  gap: 10px;
+  margin: 15px auto;
 }

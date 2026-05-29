@@ -33,10 +33,18 @@ async function saveData() {
 
   // formDataに格納
   const formData = new FormData(form);
+  const url_data = formData.get("url");
+
+  const allData = await getData(); 
+  const existing_url = allData.find(row => row.url === url_data);
+  
+  if (existing_url) {
+    alert("既に登録されているURLです!");
+    return;
+  }
 
   // タイトル取得
   try {
-    const url_data = formData.get("url");
     const gasUrl = 'https://script.google.com/macros/s/AKfycbxVmNg5RYgo7yKEcmJ9Q8SbYiONknuXKufVfM-Q67reNvjlZmyL6Wc0On8bLhCZyaQTNg/exec';
     const response = await fetch(`${gasUrl}?action=getTitle&url=${encodeURIComponent(url_data)}`);
     const data = await response.json();
@@ -45,7 +53,7 @@ async function saveData() {
 
   } catch (e) {
     alert("URLが上手く読み込めませんでした!");
-    exit();
+    return;
   };
 
   // 取得したものをobjectへ変換
@@ -65,8 +73,13 @@ async function saveData() {
 
   // firedateに格納する
   try{
-    db.collection('recipes').add(data);
-    alert("登録完了!")
+    if (confirm("登録しますか？")){
+      db.collection('recipes').add(data);
+      alert("登録完了!")
+      document.getElementById("addform").reset();
+    } else {
+      alert("登録しませんでした!")
+    }
   } catch(e) {
     alert("エラー", e)
   };

@@ -16,9 +16,13 @@
   <form id="addform">
     <ul>
       <li class="section_url">
-        <h2>編集または削除したいURL</h2>
-        <select id="title_Select">
-          <option name="url" value="all">指定なし</option>
+        <h2>編集または削除したいタイトル</h2>
+        <div class="manage-searchs">
+          <input type="text" id="search" placeholder="検索...">
+          <button type="button" class="manage-search-button" onclick="searchClick()">🔍</button>
+        </div>
+        <select name="title" id="title_Select">
+          <option value="all">検索してください</option>
         </select>
       </li>
       <li class="section">
@@ -69,8 +73,8 @@
       </li>
     </ul>
       <div class="menu-buttons">
-        <button type="button" class="decision-button" onclick="selectMenu('isTeiban', 'teiban_true', this)" id="teiban_true" >更新!</button>
-        <button type="button" class="derete-button" onclick="derete()" id="teiban_false" >削除‼</button>
+        <button type="button" class="decision-button" onclick="updata()">更新!</button>
+        <button type="button" class="derete-button" onclick="derete()">削除‼</button>
       </div>
   </form>
 
