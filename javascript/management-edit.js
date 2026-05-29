@@ -103,11 +103,11 @@ function derete() {
   const form = document.getElementById("addform");
   const formData = new FormData(form);
 
-  const titel = formData.get("titel");
+  const title = formData.get("title");
   try {
     if (confirm("削除しますか？")) {
       db.collection("recipes")
-        .where("titel", "==", titel)
+        .where("title", "==", title)
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
@@ -150,14 +150,14 @@ function updata() {
     };
   };
 
-  const titel = data["title"];
+  const title = data["title"];
 
   console.log(data)
 
   try {
     if (confirm("更新しますか？")) {
       db.collection("recipes")
-        .where("title", "==", titel)
+        .where("title", "==", title)
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
