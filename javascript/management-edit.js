@@ -107,7 +107,7 @@ function derete() {
   try {
     if (confirm("削除しますか？")) {
       db.collection("recipes")
-        .where("url", "==", titel)
+        .where("titel", "==", titel)
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
