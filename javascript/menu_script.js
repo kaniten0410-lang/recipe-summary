@@ -23,7 +23,8 @@ function selectMenu(value, btn) {
 }
 
 // プルダウンにジャンルを表示する
-function loadIngredients(menuFlag) {
+async function loadIngredients(menuFlag) {
+  const allData = await getData();
   // ジャンル項目からingredientSelectIDを取得する
   const select = document.getElementById('ingredientSelect');
   // プルダウンの内容を一旦指定なしだけにする（ご飯とお菓子を混在させないようにする）
