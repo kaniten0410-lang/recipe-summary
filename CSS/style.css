@@ -17,9 +17,8 @@ body {
 
 h1 {
     font-size: 24px;
-    margin-bottom: 8px;
+    margin: 15px;
     text-align: center;
-    padding: 5px;
 }
 
 p {
@@ -89,7 +88,6 @@ p {
     padding: 18px 20px 40px;
   }
   .image-insert{
-    background-image:url(../tamago.png);
     display: block;
     background-size: contain; 
     width: 100%;

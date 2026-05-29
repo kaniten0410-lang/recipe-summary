@@ -1,3 +1,11 @@
+const images = ["ebi2.png", "hamati.png", "hotate.png", "kani.png", "katuo.png", "maguro2.png", "sa-mon.png", "tai.png", "tamago.png"];
+const random = images[Math.floor(Math.random() * images.length)];
+
+const elements = document.getElementsByClassName("image-insert");
+for (const el of elements) {
+  el.style.backgroundImage = `url(../image/${random})`;
+}
+
 const eggs = document.querySelectorAll('.image-insert');
 eggs.forEach(egg => {
   egg.addEventListener('click', () => {
