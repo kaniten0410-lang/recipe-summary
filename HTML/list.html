@@ -16,7 +16,7 @@
 
   <div class="searchs">
     <input type="text" id="search" class="list-input" placeholder="検索...">
-    <button id="filterGenre" class="search-button" onclick="searchClick('search')">🔍</button>
+    <button id="filterGenre" class="search-button" onclick="searchClick()">🔍</button>
   </div>
 
   <div id="result-list" class="result result-list"></div>
@@ -29,7 +29,9 @@
 
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script src="../javascript/script.js"></script>
-  <script src="../javascript/list_script.js"></script>
+  <script src="../javascript/firebase.js"></script>
+  <script src="../javascript/constants.js"></script>
+  <script src="../javascript/utils.js"></script>
+  <script src="../javascript/list.js"></script>
 </body>
 </html>

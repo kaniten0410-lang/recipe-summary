@@ -1,109 +1,112 @@
+/* -------------------------------------------------------------------------- */
+/*                                     変数                                    */
+/* -------------------------------------------------------------------------- */
 // ジャンル項目からingredientSelectIDを取得する
-const select = document.getElementById('title_Select');
+const select = document.getElementById("title_Select");
+// フォーム取得
+const form = document.getElementById("addform");
 
-// false選択処理
-const false_button = document.querySelectorAll('[id$="_false"]');
-false_button.forEach(b => b.classList.add('active'));
-
-// ボタン処理
-function selectMenu(flag, value) {
-  // 隠されている場所にあるinputのmenuFlagを取得し、受け取ったValueをセットする
-  document.getElementById(flag).value = value;
-  // どのカテゴリなのかを取得
-  const [category,bools] = value.split("_");
-
-  // true,falseでactiveclassの切り替え
-  if (value.includes("_true")) {
-    // _falseのものを取得し、removeactiveする
-    document.getElementById(category + "_false").classList.remove('active');
-  } else if (value.includes("_false")) {
-    document.getElementById(category + "_true").classList.remove('active');
-  };
-  // 選択した方にactiveClassを追加
-  document.getElementById(value).classList.add('active');
-}
-
-
-document.getElementById("title_Select").addEventListener("change", function() {
-  const titel_word = document.getElementById("title_Select").value;
-
+/* -------------------------------------------------------------------------- */
+/*                           既存データ内容表示処理                             */
+/* -------------------------------------------------------------------------- */
+select.addEventListener("change", function () {
+  // タイトル名取得
   const selectedTitle = this.value;
 
   // allDataから該当データを検索
-  const data = allData.find(row => row.title === selectedTitle);
+  const data = allData.find((row) => row.title === selectedTitle);
 
+  // データがある場合、各項目にデータ表示
   if (data) {
-    // 各inputに値をセット
     const categorys = ["name", "tema", "genre", "memo"];
-    for (const category of categorys) { 
+    for (const category of categorys) {
       document.getElementById(category).value = data[category];
+    }
+    // ボタンも併せて変更
+    const bool_categorys = {
+      isGohan: "cook_",
+      isOkashi: "sweet_",
+      isTeiban: "teiban_",
     };
-
-    const bool_categorys = {"isGohan":"cook_", "isOkashi":"sweet_", "isTeiban":"teiban_"};
-    Object.entries(bool_categorys).forEach (([key, value]) => { 
-
-    let bool = "";
-    if (data[key]) {
-      bool = value + "true";
-    } else {
-      bool = value + "false";
-    };
-    document.getElementById(bool).click();
+    Object.entries(bool_categorys).forEach(([key, value]) => {
+      let bool = "";
+      // 現在の値がtrueならボタンをtrue、falseならfalseに設定しクリック
+      // クリックを行うことで色が付く
+      if (data[key]) {
+        bool = value + "true";
+      } else {
+        bool = value + "false";
+      }
+      document.getElementById(bool).click();
     });
-  };
+  }
 });
 
-// プルダウンにタイトルを表示する
-function title_load(filtered) {
-  // プルダウンの内容を一旦指定なしだけにする（ご飯とお菓子を混在させないようにする）
+
+/* -------------------------------------------------------------------------- */
+/*                           プルダウンにタイトルを表示させる                    */
+/* -------------------------------------------------------------------------- */
+/**
+ * 検索処理後の処理
+ *
+ * @param {Array<Object>} data
+ */
+function title_load(data) {
+  // 検索完了したらプルダウンの文言を変更する
   select.innerHTML = '<option value="all">↓ 検索結果 ↓</option>';
 
-  // ジャンルの重複を除いてプルダウンに追加
-  const titles = filtered.map(row => row.title);
-  titles.forEach(title => {
+  // dataからタイトルのデータだけを取得
+  const titles = data.map((row) => row.title);
+  // タイトルを一つずつループ
+  titles.forEach((title) => {
     // optionタグを作成する
-    const option = document.createElement('option');
-    // optionのvalueにジャンルを設定
+    const option = document.createElement("option");
+    // optionのvalueにタイトルを設定
     option.value = title;
-    // optionのtextにジャンルを設定
+    // optionのtextにもタイトルを設定
     option.innerText = title;
     // ジャンル項目へ作成したoptionタグを追加する
     select.appendChild(option);
   });
-};
+}
 
-async function searchClick(){
-  const allData = await getData();
+/* -------------------------------------------------------------------------- */
+/*                                    検索処理                                 */
+/* -------------------------------------------------------------------------- */
+/**
+ *　検索ボタンを押したときの処理
+ *
+ * @return {void} 
+ */
+function searchClick() {
   //keywordを取得
   const keyword = document.getElementById("search").value;
 
-  if (keyword === "") {
-    select.innerHTML = '<option value="all">↓ 全件表示 ↓</option>';
-    title_load(allData);
-    return;
-  }
-
-  // フィルター処理
-  const filtered = allData.filter(row => {
-    // 料理名またはURLの欄が空欄であれば除外
+  // keywordが含まれるタイトルをフィルター（空欄の場合はすべて取得）
+  const filtered = allData.filter((row) => {
     if (!row.title.includes(keyword)) return false;
-    // 除外されていないデータを返す
     return true;
   });
 
+  // 一件もなければエラー
   if (filtered.length === 0) {
-    alert('条件に合うレシピが見つかりませんでした');
+    alert("条件に合うレシピが見つかりませんでした");
     return;
   }
+  // フィルターしたものをプルダウン表示
   title_load(filtered);
-};
+}
 
-
-function derete() {
-  const form = document.getElementById("addform");
+/* -------------------------------------------------------------------------- */
+/*                                     削除                                    */
+/* -------------------------------------------------------------------------- */
+function delete_data() {
+  // フォームデータ取得
   const formData = new FormData(form);
-
+  // タイトル取得
   const title = formData.get("title");
+  
+  // タイトルをキーに削除処理
   try {
     if (confirm("削除しますか？")) {
       db.collection("recipes")
@@ -113,47 +116,49 @@ function derete() {
           snapshot.forEach((doc) => {
             doc.ref.delete();
           });
-          alert("削除完了!")
+          alert("削除完了!");
           document.getElementById("addform").reset();
         });
     } else {
-      alert("削除しませんでした!")
+      alert("削除しませんでした!");
     }
-  } catch(e) {
-    alert("エラー", e)
-  };
-};
+  } catch (e) {
+    alert("エラー", e);
+  }
+}
 
+/* -------------------------------------------------------------------------- */
+/*                                     更新                                    */
+/* -------------------------------------------------------------------------- */
 function updata() {
-  const form = document.getElementById("addform");
-
-  // エラーチェック
+  // フォーム入力規則チェック
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
   }
 
+  // データ取得
   const formData = new FormData(form);
 
   // 取得したものをobjectへ変換
   const data = Object.fromEntries(formData.entries());
 
-  // true falseの設定
+  // true falseの取得
   const bool_categorys = ["isGohan", "isOkashi", "isTeiban"];
-  for (const category of bool_categorys) { 
-    const [names, bools] = data[category].split("_"); 
+  for (const category of bool_categorys) {
+    const [names, bools] = data[category].split("_");
 
     if (bools === "true") {
       data[category] = true;
     } else {
       data[category] = false;
-    };
-  };
+    }
+  }
 
+  // タイトル取得
   const title = data["title"];
 
-  console.log(data)
-
+  // タイトルをキーに更新処理
   try {
     if (confirm("更新しますか？")) {
       db.collection("recipes")
@@ -163,13 +168,24 @@ function updata() {
           snapshot.forEach((doc) => {
             doc.ref.update(data);
           });
-          alert("更新完了!")
+          alert("更新完了!");
           document.getElementById("addform").reset();
         });
     } else {
-      alert("更新しませんでした!")
+      alert("更新しませんでした!");
     }
-  } catch(e) {
-    alert("エラー", e)
-  };
-};
+  } catch (e) {
+    alert("エラー", e);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   初期化処理                                */
+/* -------------------------------------------------------------------------- */
+// allData取得（共通JSのallDataにデータをセットする）
+async function init() {
+  await getData();
+}
+
+// ページ読み込み実行
+init();
