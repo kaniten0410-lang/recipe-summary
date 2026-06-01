@@ -23,7 +23,7 @@ async function get_ogp(url, imgElement, fallbackUrl = null) {
   if (url && url !== 'URL無し') {
     try {
       // GASに接続し、返事を待つ
-      const res = await fetch(`${gasUrl}?url=${encodeURIComponent(url)}`);
+      const res = await fetch(`${gasUrl}?action=getOgpImage&url=${encodeURIComponent(url)}`);
       const ogp = await res.json();
       if (ogp.success) {
         // successならsrcに取得してきたURLを入れる

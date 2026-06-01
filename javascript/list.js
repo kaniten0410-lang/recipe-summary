@@ -15,7 +15,7 @@ const observer = new IntersectionObserver((entries) => {
       // data-urlにセットされている情報から画像要素のURLを取得
       const url = img.dataset.url;
       // 画像読み込みが失敗した場合の画像を設定
-      const tai = "https://kaniten0410-lang.github.io/recipe-summary/tai.png";
+      const tai = "https://kaniten0410-lang.github.io/recipe-summary/image/tai.png";
 
       // OGP画像取得処理
       get_ogp(url, img, tai);
