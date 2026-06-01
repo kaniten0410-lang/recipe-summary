@@ -1,12 +1,13 @@
 {
   "name": "メニュー管理",
   "short_name": "メニュー管理",
-  "start_url": "/",
+  "start_url": "https://kaniten0410-lang.github.io/recipe-summary/index.html",
+  "scope": "/recipe-summary/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4285f4",
   "icons": [
-    { "src": "./image/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "./image/icon-192.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/recipe-summary/image/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/recipe-summary/image/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
