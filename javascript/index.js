@@ -8,7 +8,7 @@ const random = images[Math.floor(Math.random() * images.length)];
 // image-insertClassに画像情報を渡す
 const elements = document.querySelectorAll('.image-insert');
 for (const el of elements) {
-  el.style.backgroundImage = `url(../image/${random})`;
+  el.style.backgroundImage = `url(image/${random})`;
 }
 
 /* -------------------------------------------------------------------------- */

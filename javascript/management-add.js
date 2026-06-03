@@ -7,6 +7,12 @@
  * @return {*} 
  */
 async function saveData() {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    alert("データの取得に失敗しました");
+    return;
+  }
+  
   // formの内容を全て取得
   const form = document.getElementById("addform");
 
@@ -38,16 +44,29 @@ async function saveData() {
         `${gasUrl}?action=getTitle&url=${encodeURIComponent(url_data)}`,
       );
       const data = await response.json();
+      
+      if (data.title === null){
+        console.error('タイトルの取得に失敗しました');
+        alert("タイトルの取得に失敗しました");
+        return;
+      }
 
       formData.set("title", data.title);
+
     } catch (e) {
-      alert("URLが上手く読み込めませんでした!");
+      alert("URLが上手く読み込めませんでした");
       return;
     }
   }
 
   // 取得したものをobjectへ変換
   const data = Object.fromEntries(formData.entries());
+
+  const existing_title = allData.find((row) => row.title === data.title);
+  if (existing_title) {
+    alert("既に同じタイトルが登録されています!");
+    return;
+  }
 
   // true false取得処理
   const bool_categorys = ["isGohan", "isOkashi", "isTeiban"];
@@ -64,14 +83,15 @@ async function saveData() {
   // firedateに登録
   try {
     if (confirm("登録しますか？")) {
-      db.collection("recipes").add(data);
+      await db.collection("recipes").add(data);
       alert("登録完了!");
       document.getElementById("addform").reset();
     } else {
       alert("登録しませんでした!");
     }
   } catch (e) {
-    alert("エラー", e);
+    console.error('データの登録に失敗しました', e);
+    alert("データの登録に失敗しました");
   }
 }
 
@@ -80,7 +100,12 @@ async function saveData() {
 /* -------------------------------------------------------------------------- */
 // allData取得（共通JSのallDataにデータをセットする）
 async function init() {
-  await getData();
+  try {
+    allData = await getData();
+  } catch(e) {
+    console.error('Firebaseからのデータ取得に失敗しました', e);
+    alert("データの取得に失敗しました\n再度お試しください");
+  }
 }
 
 // ページ読み込み実行

@@ -102,6 +102,11 @@ function showResult(result) {
  * @return {*}
  */
 function searchClick() {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    showResult({ error: "データの取得に失敗しました" });
+    return;
+  }
   // 検索ワードを取得
   const keyword = document.getElementById("search").value;
 
@@ -113,6 +118,7 @@ function searchClick() {
 
   // 検索ワードが含まれているものだけフィルター
   const filtered = allData.filter((row) => {
+    if (row.url === "URL無し") return false;
     if (!row.title.includes(keyword)) return false;
     return true;
   });
@@ -131,8 +137,13 @@ function searchClick() {
 /* -------------------------------------------------------------------------- */
 // allData取得＆レシピサイトテーブル表示
 async function init() {
-  const data = await getData();
-  loadtable(data, 0);
+  try {
+    const data = await getData();
+    loadtable(data, 0);
+  } catch(e) {
+    console.error('Firebaseからのデータ取得に失敗しました', e);
+    showResult({ error: "データの取得に失敗しました\n再度お試しください" });
+  }
 }
 
 // ページ読み込み実行

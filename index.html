@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta property="og:title" content="メニュー管理">
+  <meta property="og:description" content="メニュー管理">
+  <meta property="og:image" content="https://kaniten0410-lang.github.io/recipe-summary/image/tai.png">
+  <meta name="theme-color" content="#4285f4">
+  <meta name="apple-mobile-web-app-capable" content="apple">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <title>メニュー管理</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="icon" href="image/icon-512.png">
+</head>
+<body class="body-center">
+
+  <div class="image-control">
+    <div class="image-insert"></div>
+    <h1 class="h1-index">🍽️ メニュー管理</h1>
+    <div class="image-insert"></div>
+  </div>
+
+  <div class="buttons">
+    <a href="HTML/list.html" class="btn btn-list">📋 レシピ一覧</a>
+    <a href="HTML/menu.html" class="btn btn-menu">✨ メニューを決める</a>
+    <a href="HTML/management.html" class="btn btn-management">⚙️ データ管理</a>
+  </div>
+
+  <script src="javascript/index.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/recipe-summary/sw.js");
+    }
+  </script>
+</body>
+</html>
