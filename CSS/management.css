@@ -19,8 +19,12 @@
 }
 
 .p-login {
-  font-size: 13px;
+  font-size: 12px;
   padding: 20px 5px;
+}
+
+.btn-logout {
+  background: #13175b;
 }
 
 /* ===========================
