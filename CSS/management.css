@@ -11,6 +11,18 @@
   background: #0e8ca2;
 }
 
+.btn-login {
+  flex: none;
+  width: 200px;
+  height: 100px;
+  font-size: 18px;
+}
+
+.p-login {
+  font-size: 13px;
+  padding: 20px 5px;
+}
+
 /* ===========================
    全件表示
 =========================== */
