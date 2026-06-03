@@ -104,6 +104,15 @@ function searchClick() {
 }
 
 /* -------------------------------------------------------------------------- */
+/*                            更新・削除完了後処理                              */
+/* -------------------------------------------------------------------------- */
+async function Initialization() {
+    allData = null;
+    await init();
+    select.innerHTML = '<option value="all">検索してください</option>';
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                     削除                                    */
 /* -------------------------------------------------------------------------- */
 async function delete_data() {
@@ -130,6 +139,7 @@ async function delete_data() {
       }
       alert("削除完了!");
       document.getElementById("addform").reset();
+      Initialization();
     } else {
       alert("削除しませんでした!");
     }
@@ -188,6 +198,7 @@ async function updata() {
       }
       alert("更新完了!");
       document.getElementById("addform").reset();
+      Initialization();
     } else {
       alert("更新しませんでした!");
     }
@@ -203,7 +214,7 @@ async function updata() {
 // allData取得（共通JSのallDataにデータをセットする）
 async function init() {
   try {
-    const data = await getData();
+    allData = await getData();
   } catch(e) {
     console.error('Firebaseからのデータ取得に失敗しました', e);
     alert("データの取得に失敗しました\n再度お試しください");

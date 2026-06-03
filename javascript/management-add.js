@@ -101,7 +101,7 @@ async function saveData() {
 // allData取得（共通JSのallDataにデータをセットする）
 async function init() {
   try {
-    const data = await getData();
+    allData = await getData();
   } catch(e) {
     console.error('Firebaseからのデータ取得に失敗しました', e);
     alert("データの取得に失敗しました\n再度お試しください");
