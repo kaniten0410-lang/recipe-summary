@@ -1,5 +1,7 @@
 # メニュー管理ツール
 
+## デモ
+https://kaniten0410-lang.github.io/recipe-summary/
 
 ## プロジェクト概要
 あらゆるレシピURLをブックマークしていたが量が多く管理が難しくなってきたため、
