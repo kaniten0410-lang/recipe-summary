@@ -39,6 +39,12 @@ function selectMenu(value, btn) {
 /*                                  プルダウン表示処理                         */
 /* -------------------------------------------------------------------------- */
 function loadIngredients(menuFlag) {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    showResult({ error: "データの取得に失敗しました" });
+    return;
+  }
+
   // ジャンル項目からingredientSelectIDを取得する
   const select = document.getElementById("ingredientSelect");
   // プルダウンの内容を一旦指定なしだけにする（ご飯とお菓子を混在させないようにする）
@@ -73,7 +79,13 @@ function loadIngredients(menuFlag) {
 /* -------------------------------------------------------------------------- */
 /*                                    決定ボタン                               */
 /* -------------------------------------------------------------------------- */
-function submit() {
+function decideMenu() {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    showResult({ error: "データの取得に失敗しました" });
+    return;
+  }
+
   // フラグがない場合はエラーを出力
   if (menuFlag === "") {
     showResult({ error: "ごはん・お菓子を選択してください" });
@@ -159,7 +171,7 @@ function showResult(result) {
   resultDiv.classList.add("visible");
   resultDiv.innerHTML = `今日の${menuname}は「<strong>${result.name}</strong>」です！
      <br><br>${result.site}<br>
-     <a href="${result.url}" target="_blank" rel="noopener noreferrer">${result.url}</a>
+     ${result.url === "URL無し" ? "URL無し" : `<a href="${result.url}" target="_blank" rel="noopener noreferrer">${result.url}</a>`}
      <img id="ogpImage" src="" alt="画像" style="display:none;">`;
 
   // OGP画像取得処理
@@ -172,7 +184,12 @@ function showResult(result) {
 /* -------------------------------------------------------------------------- */
 // allData取得（共通JSのallDataにデータをセットする）
 async function init() {
-  await getData();
+  try {
+    const data = await getData();
+  } catch(e) {
+    console.error('Firebaseからのデータ取得に失敗しました', e);
+    showResult({ error: "データの取得に失敗しました\n再度お試しください" });
+  }
 }
 
 // ページ読み込み実行

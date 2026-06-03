@@ -16,7 +16,7 @@ function loadtable(data) {
         <td>${item.name}</td>
         <td>${item.isGohan ? '1' : '0'}</td>
         <td>${item.isOkashi ? '1' : '0'}</td>
-        <td><a href="${item.url}" target="_blank" rel="noopener noreferrer">リンク</a></td>
+        <td>${item.url === "URL無し" ? "URL無し" : `<a href="${item.url}" target="_blank" rel="noopener noreferrer">リンク</a>`}</td>
         <td>${item.tema}</td>
         <td>${item.isTeiban ? '1' : '0'}</td>
         <td>${item.genre}</td>
@@ -34,8 +34,13 @@ function loadtable(data) {
 /* -------------------------------------------------------------------------- */
 // allData取得＆テーブル表示
 async function init() {
-  const data = await getData();
-  loadtable(data);
+  try {
+    const data = await getData();
+    loadtable(data, 0);
+  } catch(e) {
+    console.error('Firebaseからのデータ取得に失敗しました', e);
+    alert("データの取得に失敗しました\n再度お試しください");
+  }
 }
 
 // ページ読み込み実行

@@ -79,6 +79,12 @@ function title_load(data) {
  * @return {void} 
  */
 function searchClick() {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    alert("データの取得に失敗しました");
+    return;
+  }
+
   //keywordを取得
   const keyword = document.getElementById("search").value;
 
@@ -100,7 +106,13 @@ function searchClick() {
 /* -------------------------------------------------------------------------- */
 /*                                     削除                                    */
 /* -------------------------------------------------------------------------- */
-function delete_data() {
+async function delete_data() {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    alert("データの取得に失敗しました");
+    return;
+  }
+  
   // フォームデータ取得
   const formData = new FormData(form);
   // タイトル取得
@@ -109,28 +121,34 @@ function delete_data() {
   // タイトルをキーに削除処理
   try {
     if (confirm("削除しますか？")) {
-      db.collection("recipes")
+      const snapshot = await db.collection("recipes")
         .where("title", "==", title)
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            doc.ref.delete();
-          });
-          alert("削除完了!");
-          document.getElementById("addform").reset();
-        });
+        .get();
+
+      for (const doc of snapshot.docs) {
+        await doc.ref.delete();
+      }
+      alert("削除完了!");
+      document.getElementById("addform").reset();
     } else {
       alert("削除しませんでした!");
     }
   } catch (e) {
-    alert("エラー", e);
+    console.error('データの削除に失敗しました', e);
+    alert("データの削除に失敗しました");
   }
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                     更新                                    */
 /* -------------------------------------------------------------------------- */
-function updata() {
+async function updata() {
+  // allDataが読み込まれない場合、エラー出力
+  if (!allData || allData.length === 0) {
+    alert("データの取得に失敗しました");
+    return;
+  }
+
   // フォーム入力規則チェック
   if (!form.checkValidity()) {
     form.reportValidity();
@@ -161,21 +179,21 @@ function updata() {
   // タイトルをキーに更新処理
   try {
     if (confirm("更新しますか？")) {
-      db.collection("recipes")
+      const snapshot = await db.collection("recipes")
         .where("title", "==", title)
-        .get()
-        .then((snapshot) => {
-          snapshot.forEach((doc) => {
-            doc.ref.update(data);
-          });
-          alert("更新完了!");
-          document.getElementById("addform").reset();
-        });
+        .get();
+
+      for (const doc of snapshot.docs) {
+        await doc.ref.update(data);
+      }
+      alert("更新完了!");
+      document.getElementById("addform").reset();
     } else {
       alert("更新しませんでした!");
     }
   } catch (e) {
-    alert("エラー", e);
+    console.error('データの更新に失敗しました', e);
+    alert("データの更新に失敗しました");
   }
 }
 
@@ -184,7 +202,12 @@ function updata() {
 /* -------------------------------------------------------------------------- */
 // allData取得（共通JSのallDataにデータをセットする）
 async function init() {
-  await getData();
+  try {
+    const data = await getData();
+  } catch(e) {
+    console.error('Firebaseからのデータ取得に失敗しました', e);
+    alert("データの取得に失敗しました\n再度お試しください");
+  }
 }
 
 // ページ読み込み実行
