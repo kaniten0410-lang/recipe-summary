@@ -4,7 +4,7 @@
 /**
  * ボタン押下後、データ登録を行う処理
  *
- * @return {*} 
+ * @return {*}
  */
 async function saveData() {
   // allDataが読み込まれない場合、エラー出力
@@ -12,7 +12,7 @@ async function saveData() {
     alert("データの取得に失敗しました");
     return;
   }
-  
+
   // formの内容を全て取得
   const form = document.getElementById("addform");
 
@@ -44,15 +44,14 @@ async function saveData() {
         `${gasUrl}?action=getTitle&url=${encodeURIComponent(url_data)}`,
       );
       const data = await response.json();
-      
-      if (data.title === null){
-        console.error('タイトルの取得に失敗しました');
+
+      if (data.title === null) {
+        console.error("タイトルの取得に失敗しました");
         alert("タイトルの取得に失敗しました");
         return;
       }
 
       formData.set("title", data.title);
-
     } catch (e) {
       alert("URLが上手く読み込めませんでした");
       return;
@@ -90,8 +89,12 @@ async function saveData() {
       alert("登録しませんでした!");
     }
   } catch (e) {
-    console.error('データの登録に失敗しました', e);
-    alert("データの登録に失敗しました");
+    if (e.code === "permission-denied") {
+      alert("アクセス権限がありません");
+    } else {
+      console.error("データの登録に失敗しました", e);
+      alert("データの登録に失敗しました");
+    }
   }
 }
 
@@ -102,8 +105,8 @@ async function saveData() {
 async function init() {
   try {
     allData = await getData();
-  } catch(e) {
-    console.error('Firebaseからのデータ取得に失敗しました', e);
+  } catch (e) {
+    console.error("Firebaseからのデータ取得に失敗しました", e);
     alert("データの取得に失敗しました\n再度お試しください");
   }
 }

@@ -144,8 +144,12 @@ async function delete_data() {
       alert("削除しませんでした!");
     }
   } catch (e) {
-    console.error('データの削除に失敗しました', e);
-    alert("データの削除に失敗しました");
+    if (e.code === "permission-denied") {
+      alert("アクセス権限がありません");
+    } else {
+      console.error('データの削除に失敗しました', e);
+      alert("データの削除に失敗しました");
+    }
   }
 }
 
@@ -203,8 +207,12 @@ async function updata() {
       alert("更新しませんでした!");
     }
   } catch (e) {
-    console.error('データの更新に失敗しました', e);
-    alert("データの更新に失敗しました");
+    if (e.code === "permission-denied") {
+      alert("アクセス権限がありません");
+    } else {
+      console.error('データの更新に失敗しました', e);
+      alert("データの更新に失敗しました");
+    }
   }
 }
 
