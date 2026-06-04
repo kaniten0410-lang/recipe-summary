@@ -13,6 +13,10 @@ async function googleLogin() {
     await firebase.auth().signInWithPopup(provider);
     window.location.href = "../HTML/management.html";
   } catch (error) {
-    alert("ログインに失敗しました: " + error.message);
+    if (error.code === 'auth/network-request-failed') {
+      alert('ネットワークエラーが発生しました\n接続を確認してください');
+    } else {
+      alert('ログインに失敗しました: ' + error.message);
+    }
   }
 }
