@@ -7,7 +7,7 @@ let allData = null;
 const firebaseConfig = {
     apiKey: "AIzaSyBHRMw7HsDHA0tVjgfDyYnGEetYSiJW0eI",
     authDomain: "recipe-summary-10e8e.firebaseapp.com",
-    projectId: "recipe-summary-10e8e",
+    projectId: "test-dummy-project",
     storageBucket: "recipe-summary-10e8e.firebasestorage.app",
     messagingSenderId: "521772735902",
     appId: "1:521772735902:web:021c4f9d2d4b4091dc8a8f"
