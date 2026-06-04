@@ -54,3 +54,6 @@ https://kaniten0410-lang.github.io/recipe-summary/
 ## 苦労した点
 - フレームワーク不使用でHTML・CSS・JavaScriptのみで構成した
 - AIツールを活用しながら独学で実装した
+
+## テスト観点・結果
+https://docs.google.com/spreadsheets/d/1zWwo-e93Y1wfJuDme79-PBusYRlk3clKQznTH7Ucsik/edit?gid=0#gid=0
