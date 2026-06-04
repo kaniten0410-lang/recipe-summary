@@ -85,6 +85,7 @@ async function saveData() {
       await db.collection("recipes").add(data);
       alert("登録完了!");
       document.getElementById("addform").reset();
+      resetButtons();
     } else {
       alert("登録しませんでした!");
     }

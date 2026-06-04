@@ -27,3 +27,25 @@ function selectMenu(flag, value) {
   // 選択した方にactiveClassを追加
   document.getElementById(value).classList.add("active");
 }
+
+
+/**
+ *　各項目のボタンのリセット処理
+ *
+ */
+function resetButtons() {
+  console.log(false_button)
+  // 一旦false_buttonを取得
+  false_button.forEach((b) => {
+    // idを取得
+    const [category, bools] = b.id.split("_");
+    // falseボタンにactiveを追加
+    b.classList.add("active");
+
+    // trueボタンからactiveを削除
+    const trueButton = document.getElementById(category + "_true");
+    if (trueButton) {
+      trueButton.classList.remove("active");
+    }
+  });
+}

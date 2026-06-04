@@ -2,6 +2,13 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // すでにログイン済みなら管理ページへ
     window.location.href = "../HTML/management.html";
+  } else {
+    // 戻るボタンで来た場合も履歴を書き換える
+    history.pushState(null, null, location.href);
+    window.addEventListener('popstate', function() {
+      history.pushState(null, null, location.href);
+    });
+    document.body.style.display = 'flex';
   }
 });
 

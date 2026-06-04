@@ -107,6 +107,11 @@ function searchClick() {
 /*                            更新・削除完了後処理                              */
 /* -------------------------------------------------------------------------- */
 async function Initialization() {
+    // formの内容削除
+    document.getElementById("addform").reset();
+    // ボタンリセット
+    resetButtons();
+    // データ更新
     allData = null;
     await init();
     select.innerHTML = '<option value="all">検索してください</option>';
@@ -138,7 +143,6 @@ async function delete_data() {
         await doc.ref.delete();
       }
       alert("削除完了!");
-      document.getElementById("addform").reset();
       Initialization();
     } else {
       alert("削除しませんでした!");
@@ -201,7 +205,6 @@ async function updata() {
         await doc.ref.update(data);
       }
       alert("更新完了!");
-      document.getElementById("addform").reset();
       Initialization();
     } else {
       alert("更新しませんでした!");
