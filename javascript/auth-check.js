@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 async function logout() {
   try {
     await firebase.auth().signOut();
-    window.location.href = '../HTML/login.html';
+    window.location.replace('../HTML/login.html');
   } catch (error) {
     alert('ログアウトに失敗しました: ' + error.message);
   }
