@@ -59,7 +59,7 @@ async function saveData() {
   }
 
   // 取得したものをobjectへ変換
-  const data = Object.fromEntries(formData.entries());
+  let data = Object.fromEntries(formData.entries());
 
   const existing_title = allData.find((row) => row.title === data.title);
   if (existing_title) {
@@ -76,6 +76,23 @@ async function saveData() {
       data[category] = true;
     } else {
       data[category] = false;
+    }
+  }
+
+  // GASに接続し、OPG画像データを取得する
+  if (data.url && data.url !== 'URL無し') {
+    try {
+      const res = await fetch(`${gasUrl}?action=getOgpImage&url=${encodeURIComponent(data.url)}`);
+      const ogp = await res.json();
+
+      if (ogp.success) {
+        data.imageURL = ogp.imageUrl;
+      } else if (!ogp.success) {
+        data.imageURL = "";
+      }
+    } catch (e) {
+      alert("OGP画像が取得できませんでした");
+      return;
     }
   }
 

@@ -34,7 +34,6 @@ function selectMenu(flag, value) {
  *
  */
 function resetButtons() {
-  console.log(false_button)
   // 一旦false_buttonを取得
   false_button.forEach((b) => {
     // idを取得

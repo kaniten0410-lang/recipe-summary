@@ -2,29 +2,7 @@
 /*                                   変数　　　                                */
 /* -------------------------------------------------------------------------- */
 const resultDiv = document.getElementById("result-list");
-
-/* -------------------------------------------------------------------------- */
-/*                          IntersectionObserver設定                           */
-/* -------------------------------------------------------------------------- */
-const observer = new IntersectionObserver((entries) => {
-  // 画面が読み込まれた場合の処理
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      // 画面読み込みがあった画像要素を取得
-      const img = entry.target;
-      // data-urlにセットされている情報から画像要素のURLを取得
-      const url = img.dataset.url;
-      // 画像読み込みが失敗した場合の画像を設定
-      const tai = "https://kaniten0410-lang.github.io/recipe-summary/image/tai.png";
-
-      // OGP画像取得処理
-      get_ogp(url, img, tai);
-
-      // 一度取得したら監視をやめる
-      observer.unobserve(img);
-    }
-  });
-});
+const tai = "https://kaniten0410-lang.github.io/recipe-summary/image/tai.png";
 
 /* -------------------------------------------------------------------------- */
 /*                                   テーブル表示                              */
@@ -62,15 +40,11 @@ function loadtable(data, option = 0) {
     const tr = document.createElement("tr");
     // trタグに情報追加
     tr.innerHTML = `
-          <td><img src="" alt="" data-url="${item.url}"></td>
+          <td><img src="${item.imageURL === "" ? tai : item.imageURL }" alt="" class="${item.imageURL === "" ? "ogp-image ogp-fallback" : "ogp-image"}"></td>
           <td><a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</td>`;
 
     // trタグ内のimgを取得
     const img = tr.querySelector("img");
-    // Class追加
-    img.classList.add("ogp-image");
-    // imgを監視対象に追加
-    observer.observe(img);
     // 作成した内容をテーブルに反映
     recipe_tbl.appendChild(tr);
   });

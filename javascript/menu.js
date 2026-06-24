@@ -137,7 +137,7 @@ function decideMenu() {
 
   // ランダムに1件取得
   const random = filtered[Math.floor(Math.random() * filtered.length)];
-  showResult({ name: random.name, site: random.title, url: random.url });
+  showResult({ name: random.name, site: random.title, url: random.url, imageURL:random.imageURL });
 }
 
 /* -------------------------------------------------------------------------- */
@@ -172,12 +172,10 @@ function showResult(result) {
   resultDiv.innerHTML = `今日の${menuname}は「<strong>${result.name}</strong>」です！
      <br><br>${result.site}<br>
      ${result.url === "URL無し" ? "URL無し" : `<a href="${result.url}" target="_blank" rel="noopener noreferrer">${result.url}</a>`}
-     <img id="ogpImage" src="" alt="画像" style="display:none;">`;
-
-  // OGP画像取得処理
-  const ogpImage = document.getElementById("ogpImage");
-  get_ogp(result.url, ogpImage);
+     <img id="ogpImage" src="${result.imageURL === "" ? "" : result.imageURL }" alt="画像" style="${result.imageURL === "" ? "display:none" : "display:block" }">`;
 }
+
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   初期化処理                                */
