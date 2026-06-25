@@ -1,0 +1,8 @@
+# Firebaseの秘密鍵
+serviceAccountKey.json
+
+# backupファイル
+backup/
+
+# backupバッチ
+backup.bat
